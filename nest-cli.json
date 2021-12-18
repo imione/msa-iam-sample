@@ -1,4 +1,30 @@
 {
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src"
+  "sourceRoot": "apps/msa-iam-sample/src",
+  "monorepo": true,
+  "root": "apps/msa-iam-sample",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/msa-iam-sample/tsconfig.app.json"
+  },
+  "projects": {
+    "msa-iam-sample": {
+      "type": "application",
+      "root": "apps/msa-iam-sample",
+      "entryFile": "main",
+      "sourceRoot": "apps/msa-iam-sample/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/msa-iam-sample/tsconfig.app.json"
+      }
+    },
+    "user-management": {
+      "type": "application",
+      "root": "apps/user-management",
+      "entryFile": "main",
+      "sourceRoot": "apps/user-management/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/user-management/tsconfig.app.json"
+      }
+    }
+  }
 }
