@@ -65,5 +65,9 @@
     "roots": [
       "<rootDir>/apps/"
     ]
+  },
+  "moduleNameMapper": {
+    "@apps/user-management/(.*)": "<rootDir>/apps/user-management/src/$1",
+    "@apps/user-management": "<rootDir>/apps/user-management/src"
   }
 }

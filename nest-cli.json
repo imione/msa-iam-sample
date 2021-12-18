@@ -8,15 +8,6 @@
     "tsConfigPath": "apps/msa-iam-sample/tsconfig.app.json"
   },
   "projects": {
-    "msa-iam-sample": {
-      "type": "application",
-      "root": "apps/msa-iam-sample",
-      "entryFile": "main",
-      "sourceRoot": "apps/msa-iam-sample/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/msa-iam-sample/tsconfig.app.json"
-      }
-    },
     "user-management": {
       "type": "application",
       "root": "apps/user-management",
