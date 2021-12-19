@@ -17,9 +17,14 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./apps/msa-iam-sample/test/jest-e2e.json"
+    "test:e2e": "jest --config ./apps/msa-iam-sample/test/jest-e2e.json",
+    "user-management:migration": "ts-node -r tsconfig-paths/register ./apps/user-management/__migrations/migrate.ts"
   },
   "dependencies": {
+    "@mikro-orm/core": "^4.5.9",
+    "@mikro-orm/migrations": "^4.5.9",
+    "@mikro-orm/mysql": "^4.5.9",
+    "@mikro-orm/nestjs": "^4.3.1",
     "@nestjs/common": "^8.2.4",
     "@nestjs/core": "^8.2.4",
     "@nestjs/platform-express": "^8.2.4",
@@ -28,6 +33,7 @@
     "rxjs": "^7.4.0"
   },
   "devDependencies": {
+    "@mikro-orm/cli": "^4.5.9",
     "@nestjs/cli": "^8.1.6",
     "@nestjs/schematics": "^8.0.5",
     "@nestjs/testing": "^8.2.4",
