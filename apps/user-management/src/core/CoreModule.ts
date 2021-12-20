@@ -1,5 +1,8 @@
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService, ConfigType } from '@nestjs/config';
+
+import DatabaseConfig from '@apps/user-management/config/DatabaseConfig';
 
 import { Resource } from '@apps/user-management/user/infra/persistence/common/Resource';
 import { RootEntity } from '@apps/user-management/user/infra/persistence/common/RootEntity';
@@ -7,14 +10,24 @@ import { User } from '@apps/user-management/user/infra/persistence/user/User';
 
 @Module({
   imports: [
-    MikroOrmModule.forRoot({
-      entities: [RootEntity, Resource, User],
-      dbName: 'UserManagement',
-      host: '127.0.0.1',
-      port: 13306,
-      user: 'root',
-      password: 'test',
-      type: 'mysql',
+    MikroOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => {
+        const { host, port, user, password, dbSchema } = configService.get(
+          'database',
+        ) as ConfigType<typeof DatabaseConfig>;
+
+        return {
+          entities: [RootEntity, Resource, User],
+          dbName: dbSchema,
+          host,
+          port,
+          user,
+          password,
+          type: 'mysql',
+        };
+      },
+      inject: [ConfigService],
     }),
   ],
 })
