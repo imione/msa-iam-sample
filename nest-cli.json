@@ -14,7 +14,13 @@
       "entryFile": "main",
       "sourceRoot": "apps/user-management/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/user-management/tsconfig.app.json"
+        "tsConfigPath": "apps/user-management/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "**/*.env",
+            "watchAssets": true
+          }
+        ]
       }
     }
   }
