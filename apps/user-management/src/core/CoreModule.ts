@@ -4,6 +4,8 @@ import { ConfigModule, ConfigService, ConfigType } from '@nestjs/config';
 
 import DatabaseConfig from '@apps/user-management/config/DatabaseConfig';
 
+import { HealthModule } from '@apps/user-management/core/health/HealthModule';
+
 import { Resource } from '@apps/user-management/user/infra/persistence/common/Resource';
 import { RootEntity } from '@apps/user-management/user/infra/persistence/common/RootEntity';
 import { User } from '@apps/user-management/user/infra/persistence/user/User';
@@ -29,6 +31,7 @@ import { User } from '@apps/user-management/user/infra/persistence/user/User';
       },
       inject: [ConfigService],
     }),
+    HealthModule,
   ],
 })
 export class CoreModule {}
