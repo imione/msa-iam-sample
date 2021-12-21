@@ -7,7 +7,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -17,23 +17,32 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./apps/msa-iam-sample/test/jest-e2e.json",
+    "user-management:migration": "ts-node -r tsconfig-paths/register ./apps/user-management/__migrations/migrate.ts"
   },
   "dependencies": {
-    "@nestjs/common": "^6.10.14",
-    "@nestjs/core": "^6.10.14",
-    "@nestjs/platform-express": "^6.10.14",
+    "@mikro-orm/core": "^4.5.9",
+    "@mikro-orm/migrations": "^4.5.9",
+    "@mikro-orm/mysql": "^4.5.9",
+    "@mikro-orm/nestjs": "^4.3.1",
+    "@nestjs/common": "^8.2.4",
+    "@nestjs/config": "^1.1.5",
+    "@nestjs/core": "^8.2.4",
+    "@nestjs/platform-express": "^8.2.4",
+    "@nestjs/terminus": "^8.0.3",
+    "joi": "^17.5.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
-    "rxjs": "^6.5.4"
+    "rxjs": "^7.4.0"
   },
   "devDependencies": {
-    "@nestjs/cli": "^6.13.2",
-    "@nestjs/schematics": "^6.8.1",
-    "@nestjs/testing": "^6.10.14",
+    "@mikro-orm/cli": "^4.5.9",
+    "@nestjs/cli": "^8.1.6",
+    "@nestjs/schematics": "^8.0.5",
+    "@nestjs/testing": "^8.2.4",
     "@types/express": "^4.17.2",
     "@types/jest": "25.1.2",
-    "@types/node": "^13.1.6",
+    "@types/node": "^16.11.14",
     "@types/supertest": "^2.0.8",
     "@typescript-eslint/eslint-plugin": "^2.12.0",
     "@typescript-eslint/parser": "^2.12.0",
@@ -47,7 +56,8 @@
     "ts-loader": "^6.2.1",
     "ts-node": "^8.6.0",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.7.4"
+    "typescript": "^4.5.4",
+    "webpack": "^5.65.0"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -55,12 +65,19 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": ".",
     "testRegex": ".spec.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/apps/"
+    ]
+  },
+  "moduleNameMapper": {
+    "@apps/user-management/(.*)": "<rootDir>/apps/user-management/src/$1",
+    "@apps/user-management": "<rootDir>/apps/user-management/src"
   }
 }
