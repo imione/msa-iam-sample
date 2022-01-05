@@ -22,6 +22,15 @@
           }
         ]
       }
+    },
+    "ddd": {
+      "type": "library",
+      "root": "libs/ddd",
+      "entryFile": "index",
+      "sourceRoot": "libs/ddd/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/ddd/tsconfig.libs.json"
+      }
     }
   }
 }

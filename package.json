@@ -73,11 +73,17 @@
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
     "roots": [
-      "<rootDir>/apps/"
-    ]
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^lib/ddd(|/.*)$": "<rootDir>/libs/ddd/src/$1"
+    }
   },
   "moduleNameMapper": {
     "@apps/user-management/(.*)": "<rootDir>/apps/user-management/src/$1",
-    "@apps/user-management": "<rootDir>/apps/user-management/src"
+    "@apps/user-management": "<rootDir>/apps/user-management/src",
+    "@libs/ddd/(.*)": "<rootDir>/libs/ddd/src/$1",
+    "@libs/ddd": "<rootDir>/libs/ddd/src"
   }
 }
